@@ -1,0 +1,12 @@
+# Ignore the directory that contains Terraform’s provider plugins
+.terraform/ 
+
+# Ignore the lock file if you don't need it versioned (otherwise keep it in version control)
+.terraform.lock.hcl
+
+# Ignore Terraform variable files (contains sensitive information)
+*.tfvars
+
+# Ignore Terraform state files (contains sensitive information)
+*.tfstate
+*.tfstate.*
