@@ -38,8 +38,7 @@ resource "aws_s3_bucket_policy" "monthly_billing_storage_policy" {
         Resource = "arn:aws:s3:::${aws_s3_bucket.monthly_billing_storage.id}"
         Condition = {
           StringEquals = {
-            "aws:SourceAccount" = "637423468958"
-            "aws:SourceArn"     = "arn:aws:cur:us-east-1:637423468958:definition/*"
+            "aws:SourceArn" = "arn:aws:cur:us-east-1:*:definition/*"
           }
         }
       },
@@ -53,13 +52,13 @@ resource "aws_s3_bucket_policy" "monthly_billing_storage_policy" {
         Resource = "arn:aws:s3:::${aws_s3_bucket.monthly_billing_storage.id}/*"
         Condition = {
           StringEquals = {
-            "aws:SourceAccount" = "637423468958"
-            "aws:SourceArn"     = "arn:aws:cur:us-east-1:637423468958:definition/*"
+            "aws:SourceArn" = "arn:aws:cur:us-east-1:*:definition/*"
           }
         }
       }
     ]
   })
+
 }
 
 
