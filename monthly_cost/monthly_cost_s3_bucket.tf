@@ -21,43 +21,7 @@ resource "aws_s3_bucket" "monthly_billing_storage" {
 resource "aws_s3_bucket_policy" "monthly_billing_storage_policy" {
   bucket = aws_s3_bucket.monthly_billing_storage.bucket
 
-  policy = jsonencode({
-    Version = "2008-10-17"
-    Id      = "Policy1335892530063"
-    Statement = [
-      {
-        Sid    = "Stmt1335892150622"
-        Effect = "Allow"
-        Principal = {
-          Service = "billingreports.amazonaws.com"
-        }
-        Action = [
-          "s3:GetBucketAcl",
-          "s3:GetBucketPolicy"
-        ]
-        Resource = "arn:aws:s3:::${aws_s3_bucket.monthly_billing_storage.id}"
-        Condition = {
-          StringEquals = {
-            "aws:SourceArn" = "arn:aws:cur:us-east-1:*:definition/*"
-          }
-        }
-      },
-      {
-        Sid    = "Stmt1335892526596"
-        Effect = "Allow"
-        Principal = {
-          Service = "billingreports.amazonaws.com"
-        }
-        Action   = "s3:PutObject"
-        Resource = "arn:aws:s3:::${aws_s3_bucket.monthly_billing_storage.id}/*"
-        Condition = {
-          StringEquals = {
-            "aws:SourceArn" = "arn:aws:cur:us-east-1:*:definition/*"
-          }
-        }
-      }
-    ]
-  })
+  policy = file("s3_policy.json")
 
 }
 

@@ -10,3 +10,4 @@
 # Ignore Terraform state files (contains sensitive information)
 *.tfstate
 *.tfstate.*
+*.json
